@@ -1,0 +1,9 @@
+cd flask-app
+sudo docker build -t test .
+sudo docker run -d --publish 8888:5000 test
+
+sudo docker rm -f
+sudo docker container ls
+
+aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 400762675510.dkr.ecr.us-east-1.amazonaws.com
+sudo docker tag test:latest 400762675510.dkr.ecr.us-east-1.amazonaws.com/test:latest
